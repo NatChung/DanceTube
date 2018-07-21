@@ -1,3 +1,4 @@
+import './VideoPlayer.story'
 import './AlertMessage.story'
 import './DrawerButton.story'
 import './FullButton.story'
