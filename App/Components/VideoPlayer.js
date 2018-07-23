@@ -43,9 +43,9 @@ class VideoPlayer extends React.Component {
   render () {
     return (
       <Video
-        source={{uri: 'test2.mp4'}}
+        source={{uri: 'https://r8---sn-ipoxu-un5z.googlevideo.com/videoplayback?ei=f6FVW6a8BISkqQGbh6r4Bg&itag=18&requiressl=yes&mm=31%2C29&expire=1532360159&initcwndbps=887500&source=youtube&dur=143.360&clen=13144404&c=WEB&ratebypass=yes&lmt=1422679947385394&ipbits=0&gir=yes&mn=sn-ipoxu-un5z%2Csn-un57sn7z&key=yt6&ip=61.216.78.73&ms=au%2Crdu&fvip=5&mv=m&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mt=1532338446&pl=24&mime=video%2Fmp4&id=o-AIXThFN7d3-neVy_dS7P4ENUDOnF7ZeiVE3eV-8NZVoA&signature=BE606EFE9D0E31F9D3C9BF756101A364E30D2254.51CFC20115406867F58880202557AEAA30ECF0E3'}}
         ref={(ref) => {this.player = ref}}
-        rate={0.5}
+        rate={1}
         volume={1}
         muted={false}
         paused={false}

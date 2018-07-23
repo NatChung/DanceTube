@@ -41,7 +41,6 @@
 		464EE056355D44B8AEF4D433 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4365052E2B5245BBB8E045D4 /* MaterialCommunityIcons.ttf */; };
 		5B251D1869D6463AAC4FECDB /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2797A95A5D2438C81AB9877 /* Zocial.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		77CABCAF210399DA0012308B /* test2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 77CABCAE210399DA0012308B /* test2.mp4 */; };
 		7D24A705AAC342A98CF89A84 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19EB2692A6E849B184F67CA5 /* libRNVectorIcons.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		870870849EA84B5090A44DCD /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F5C390FA2C844075A614AF76 /* Entypo.ttf */; };
@@ -379,7 +378,6 @@
 		57DD459885144C90BC1C3DC9 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		69C230E02C1D46ECAEF16C72 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		77CABCAE210399DA0012308B /* test2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = test2.mp4; path = ../Assets/test2.mp4; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		79AEEC1263AC46B097A2A0AF /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -669,7 +667,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				77CABCAE210399DA0012308B /* test2.mp4 */,
 				13B07FAE1A68108700A75B9A /* DanceTube */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* DanceTubeTests */,
@@ -1176,7 +1173,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77CABCAF210399DA0012308B /* test2.mp4 in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				870870849EA84B5090A44DCD /* Entypo.ttf in Resources */,
