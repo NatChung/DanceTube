@@ -21,10 +21,10 @@ export default class EditorControlPannel extends Component {
       <View style={styles.container}>
         <View style={styles.pannelBackground} >
           <TouchableOpacity onPress={this.props.onPlay} style={styles.playButton} >
-            <Icon name={(this.props.paused) ? "play" : "pause"} size={50} />
+            <Icon name={(this.props.paused) ? "play" : "pause"} size={50}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.props.onRecord} style={styles.recordButton} >
-            <Icon name={(this.props.isRecording) ? "square" : "circle"} size={50} />
+            <Icon name={(this.props.isRecording) ? "square" : "circle"} size={50} color='red' />
           </TouchableOpacity>
           <TouchableOpacity
             disabled={!this.props.isRecording}
