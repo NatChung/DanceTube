@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Slider } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-import YoutubeVideoActions from '../Redux/YoutubeVideoRedux'
+import VideosActions from '../Redux/VideosRedux'
 
 // Styles
 import styles from './Styles/EditorContainerStyle'
@@ -169,13 +169,13 @@ class EditorContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    videos: state.youtube
+    videos: state.videos
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveVideo: video => dispatch(YoutubeVideoActions.youtubeVideoSave(video))
+    saveVideo: video => dispatch(VideosActions.youtubeVideoSave(video))
   }
 }
 
