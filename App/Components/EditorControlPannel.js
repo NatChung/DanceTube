@@ -20,7 +20,10 @@ export default class EditorControlPannel extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.pannelBackground} >
-          <TouchableOpacity onPress={this.props.onPlay} style={styles.playButton} >
+          <TouchableOpacity 
+            disabled={this.props.isRecording}
+            onPress={this.props.onPlay} 
+            style={(this.props.isRecording) ? styles.disabledButton : styles.playButton} >
             <Icon name={(this.props.paused) ? "play" : "pause"} size={50}/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.props.onRecord} style={styles.recordButton} >
@@ -29,7 +32,7 @@ export default class EditorControlPannel extends Component {
           <TouchableOpacity
             disabled={!this.props.isRecording}
             onPress={this.props.onBreak}
-            style={(this.props.isRecording) ? styles.breakButton : styles.disabledButton} >
+            style={(!this.props.isRecording) ? styles.disabledButton : styles.breakButton } >
             <Icon name="cut" size={50} />
           </TouchableOpacity>
           
