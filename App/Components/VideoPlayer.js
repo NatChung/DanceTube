@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import Video from 'react-native-video'
 
 const styles = StyleSheet.create({
@@ -16,52 +16,49 @@ class VideoPlayer extends React.Component {
 
   constructor (props) {
     super(props)
+
     this.player = null
+    this.duration = 0
+    this.currentTime = 0
+
+    this._onProgress = this.onProgress.bind(this)
+    this._onLoad = this.onLoad.bind(this)
   }
 
-  // Callback when video starts to load
-  loadStart () {}
-
   // Callback when video loads
-  setDuration () {}
+  onLoad (data) {
+    this.duration = data.duration
+    this.props.onLoad(this.duration)
+  }
 
   // Callback every ~250ms with currentTime
-  setTime () {}
-
-  // Callback when playback finishes
-  onEnd () {}
+  onProgress (data) {
+    this.currentTime = data.currentTime
+    this.props.onProgress(this.currentTime)
+  }
 
   // Callback when video cannot be loaded
-  videoError () {}
-
-  // Callback when remote video is buffering
-  onBuffer () {}
-
-  // Callback when the stream receive some metadata
-  onTimedMetadata () {}
+  videoError (err) {console.log('video player error: ', err)}
 
   render () {
     return (
+      
       <Video
-        source={{uri: 'https://r8---sn-ipoxu-un5z.googlevideo.com/videoplayback?ei=f6FVW6a8BISkqQGbh6r4Bg&itag=18&requiressl=yes&mm=31%2C29&expire=1532360159&initcwndbps=887500&source=youtube&dur=143.360&clen=13144404&c=WEB&ratebypass=yes&lmt=1422679947385394&ipbits=0&gir=yes&mn=sn-ipoxu-un5z%2Csn-un57sn7z&key=yt6&ip=61.216.78.73&ms=au%2Crdu&fvip=5&mv=m&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mt=1532338446&pl=24&mime=video%2Fmp4&id=o-AIXThFN7d3-neVy_dS7P4ENUDOnF7ZeiVE3eV-8NZVoA&signature=BE606EFE9D0E31F9D3C9BF756101A364E30D2254.51CFC20115406867F58880202557AEAA30ECF0E3'}}
+        source={{uri: 'https://r4---sn-p5qlsnsr.googlevideo.com/videoplayback?mt=1532485129&key=yt6&ip=54.211.26.227&lmt=1507169390801963&ms=au%2Conr&fvip=4&source=youtube&mv=u&dur=85.077&id=o-AJf1epUM1sPGqA86KQBrJmHZc_-U4wpb50ooGvvhIVue&expire=1532507261&mm=31%2C26&mn=sn-p5qlsnsr%2Csn-vgqsener&c=WEB&mime=video%2Fmp4&itag=22&requiressl=yes&ratebypass=yes&pl=20&ei=HeBXW8X_K8Gz8wTfmb3YCQ&ipbits=0&sparams=dur%2Cei%2Cid%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&signature=D28D3869EE4DB43A593DFC5A7EE43683AD98BF3D.6EE663F0100802BD74B8D1CB8300564E76FDC7D8'}}
         ref={(ref) => {this.player = ref}}
-        rate={1}
+        rate={this.props.rate}
         volume={1}
         muted={false}
-        paused={false}
+        paused={this.props.paused}
         resizeMode="none"
-        repeat={true}
+        repeat={false}
         playInBackground={false}
         playWhenInactive={false}
         progressUpdateInterval={250.0}
-        onLoadStart={this.loadStart}
-        onLoad={this.setDuration}
-        onProgress={this.setTime}
-        onEnd={this.onEnd}
+        onLoad={this._onLoad}
+        onProgress={this._onProgress}
         onError={this.videoError}
-        onBuffer={this.onBuffer}
-        onTimedMetadata={this.onTimedMetadata}
-        style={styles.video}
+        style={this.props.style}
       />
     )
   }
