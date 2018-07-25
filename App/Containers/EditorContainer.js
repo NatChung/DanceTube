@@ -20,7 +20,6 @@ class EditorContainer extends Component {
 
     this.player = null
     this.selectedItem = null
-    this.tempItem = null
 
     this._onRecord = this.onRecord.bind(this)
     this._onBreak = this.onBreak.bind(this)
@@ -39,26 +38,25 @@ class EditorContainer extends Component {
   }
 
   _startRecord(){
+    
     this.setState({ 
-      items: [this.state.items[0]] , 
+      items: [this.state.items[0], {
+        code: 0,
+        start: this.player.currentTime,
+        end: 0
+      }] , 
       paused: false,
       isRecording: true
     })
-
-    this.tempItem = {
-      code: 0,
-      start: this.player.currentTime,
-      end: 0
-    }
   }
 
   _stopRecord(){
 
     this.setState({
-      isRecording: false
+      isRecording: false,
+      paused: true
     })
     
-    this.tempItem = null
   }
 
   onRecord() {
@@ -66,22 +64,28 @@ class EditorContainer extends Component {
     this.selectedItem = null
     if(this.state.isRecording) this._stopRecord()
     else this._startRecord()
-    
-    
+  }
+
+  _updateItems(currentTime){
+    let items = this.state.items.slice(0)
+    let lastItem = items[items.length-1]
+    lastItem.end = currentTime
+    lastItem.code = lastItem.end - lastItem.start
+
+    return items
   }
 
   onBreak() {
 
-    let currentTime = this.player.currentTime
-    this.tempItem.end = currentTime
-    this.tempItem.code = this.tempItem.end - this.tempItem.start
-    this.setState({ items: [...this.state.items, this.tempItem] })
-
-    this.tempItem = {
+    let items = this._updateItems(this.player.currentTime)
+    items.push({
       code: 0,
-      start: currentTime,
+      start: this.player.currentTime,
       end: 0
-    }
+    })
+    this.setState({ items: [...items] })
+
+    
   }
 
   onPlay(){
@@ -94,6 +98,11 @@ class EditorContainer extends Component {
     this.setState({ value: currentTime / this.player.duration })
     if ( this.selectedItem && currentTime >= (this.selectedItem.end+0.5)) {
       this.player.player.seek(this.selectedItem.start)
+    }
+
+    if(this.state.isRecording){
+      let items = this._updateItems(this.player.currentTime)
+      this.setState({ items: [...items] })
     }
   }
 
@@ -141,7 +150,7 @@ class EditorContainer extends Component {
           onBreak={this._onBreak} />
         
         <GridView
-          itemDimension={80}
+          itemDimension={70}
           items={this.state.items}
           style={styles.gridView}
           renderItem={item => (
