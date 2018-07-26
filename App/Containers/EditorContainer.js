@@ -15,20 +15,7 @@ import EditController from '../Components/EditController'
 import PlayController from '../Components/PlayController'
 import VideoPlayer from '../Components/VideoPlayer'
 
-const Controller = props => (props.isEditing) ?
-  <EditController
-    paused={props.paused}
-    isRecording={props.isRecording}
-    onPlay={props.onPlay}
-    onRecord={props.onRecord}
-    onBreak={props.onBreak} />
-  : <PlayController
-    paused={props.paused}
-    isRecording={props.isRecording}
-    onPlay={props.onPlay}
-    onRecord={props.onRecord}
-    onBreak={props.onBreak} />
-
+const RATES = [1, 0.75, 0.25]
 
 class EditorContainer extends Component {
   constructor(props) {
@@ -39,6 +26,8 @@ class EditorContainer extends Component {
     this._onLoad = this.onLoad.bind(this)
     this._onPlay = this.onPlay.bind(this)
     this._onValueChange = this.onValueChange.bind(this)
+    this._onChangePlayRate = this.onChangePlayRate.bind(this)
+    this.rateIndex = 0
 
     this.state = {
       paused: true,
@@ -48,11 +37,13 @@ class EditorContainer extends Component {
       isRecording: false,
       isEditing: true,
       value: 0,
+      rateIndex: 0
     }
   }
 
   _selectFirstItem() {
-    this.setState({ selectedItems: [this.firstItem] })
+    this.setState({ selectedItems: [this.firstItem], rateIndex: 0 })
+    this.rateIndex = 0
     this.playableDuration = { start: 0, end: this.firstItem.end }
   }
 
@@ -120,6 +111,10 @@ class EditorContainer extends Component {
 
   onPlay() {
     this.setState({ paused: !this.state.paused })
+  }
+
+  onChangePlayRate(){
+    this.setState({rateIndex: ++this.rateIndex})
   }
 
   onProgress(currentTime) {
@@ -205,14 +200,9 @@ class EditorContainer extends Component {
   }
 
   onItemClick(item) {
-
     this.setState({isEditing: (item === this.firstItem)})
-
     if (item === this.firstItem) this._selectFirstItem()
     else this._selectNewItem(item)
-
-    // this.setState({ paused: false })
-    // this.player.player.seek(this.playableDuration.start)
   }
 
   onValueChange(value) {
@@ -225,7 +215,7 @@ class EditorContainer extends Component {
 
         <VideoPlayer
           ref={ref => this.player = ref}
-          rate={this.state.rate}
+          rate={RATES[this.state.rateIndex%RATES.length]}
           paused={this.state.paused}
           style={styles.video}
           onLoad={this._onLoad}
@@ -234,13 +224,19 @@ class EditorContainer extends Component {
 
         <Slider value={this.state.value} onValueChange={this._onValueChange} />
 
-        <Controller
-          paused={this.state.paused}
-          isRecording={this.state.isRecording}
-          isEditing={this.state.isEditing}
-          onPlay={this._onPlay}
-          onRecord={this._onRecord}
-          onBreak={() => this.onBreak(this.player.currentTime)} />
+        {(this.state.isEditing) ?
+          <EditController
+            paused={this.state.paused}
+            rate={this.state.rate}
+            isRecording={this.state.isRecording}
+            onPlay={this._onPlay}
+            onRecord={this._onRecord}
+            onBreak={() => this.onBreak(this.player.currentTime)} /> :
+          <PlayController
+            paused={this.state.paused}
+            isRecording={this.state.isRecording}
+            onPlay={this._onPlay} 
+            onChangePlayRate={this._onChangePlayRate}/>}
 
         <GridView
           itemDimension={70}

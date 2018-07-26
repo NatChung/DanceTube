@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native'
 import styles from './Styles/EditControllerStyle'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class EditController extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
+  // Prop type warnings
+  static propTypes = {
+    isRecording: PropTypes.bool.isRequired,
+    paused: PropTypes.bool.isRequired,
+    onPlay: PropTypes.func,
+    onRecord: PropTypes.func,
+    onBreak: PropTypes.func
+  }
   //
   // // Defaults for props
   // static defaultProps = {
