@@ -35,7 +35,6 @@ class EditorContainer extends Component {
     super(props)
 
     this._onRecord = this.onRecord.bind(this)
-    this._onBreak = this.onBreak.bind(this)
     this._onProgress = this.onProgress.bind(this)
     this._onLoad = this.onLoad.bind(this)
     this._onPlay = this.onPlay.bind(this)
@@ -69,8 +68,7 @@ class EditorContainer extends Component {
     this._selectFirstItem()
   }
 
-  _startRecord() {
-    const currentTime = this.player.currentTime //Must using const current to assign for check continue selection
+  _startRecord(currentTime) {
     
     this.setState({
       items: [this.state.items[0], {
@@ -97,7 +95,7 @@ class EditorContainer extends Component {
   onRecord() {
 
     if (this.state.isRecording) this._stopRecord()
-    else this._startRecord()
+    else this._startRecord(this.player.currentTime)
   }
 
   _updateItems(currentTime) {
@@ -110,9 +108,7 @@ class EditorContainer extends Component {
     return items
   }
 
-  onBreak() {
-
-    const currentTime = this.player.currentTime //Must using const current to assign for check continue selection
+  onBreak(currentTime) {
     let items = this._updateItems(currentTime)
     items.push({
       code: 0,
@@ -244,7 +240,7 @@ class EditorContainer extends Component {
           isEditing={this.state.isEditing}
           onPlay={this._onPlay}
           onRecord={this._onRecord}
-          onBreak={this._onBreak} />
+          onBreak={() => this.onBreak(this.player.currentTime)} />
 
         <GridView
           itemDimension={70}
