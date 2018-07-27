@@ -316,7 +316,7 @@ class EditorContainer extends Component {
 const mapStateToProps = (state) => {
   return {
     videos: state.videos,
-    videoPath: state.downloader.payload.path
+    videoPath: state.downloader.payload
   }
 }
 
