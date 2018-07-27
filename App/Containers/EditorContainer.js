@@ -27,7 +27,6 @@ class EditorContainer extends Component {
     this._onPlay = this.onPlay.bind(this)
     this._onValueChange = this.onValueChange.bind(this)
     this._onChangePlayRate = this.onChangePlayRate.bind(this)
-    this.rateIndex = 0
 
     this.state = {
       paused: true,
@@ -116,6 +115,7 @@ class EditorContainer extends Component {
   onChangePlayRate(){
     this.setState({rateIndex: ++this.rateIndex})
   }
+
 
   onProgress(currentTime) {
     if (this.state.paused) return

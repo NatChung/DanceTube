@@ -11,7 +11,6 @@ export default class PlayController extends Component {
     paused: PropTypes.bool.isRequired,
     onPlay: PropTypes.func,
     onChangePlayRate: PropTypes.func,
-    onPreBeat: PropTypes.func,
     onVideoRecord: PropTypes.func,
     onPlayback: PropTypes.func
   }
@@ -33,11 +32,6 @@ export default class PlayController extends Component {
           </TouchableOpacity>
           <TouchableOpacity onPress={this.props.onChangePlayRate} style={styles.recordButton} >
             <Text> {'速度'} </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={this.props.onPreBeat}
-            style={styles.breakButton } >
-            <Text> {'預備'} </Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.props.onVideoRecord} style={styles.recordButton} >
             <Text> {'錄影'} </Text>

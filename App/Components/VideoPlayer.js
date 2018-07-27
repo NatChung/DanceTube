@@ -44,7 +44,7 @@ class VideoPlayer extends React.Component {
     return (
       
       <Video
-        source={{uri: 'https://r4---sn-p5qlsnsr.googlevideo.com/videoplayback?itag=22&ip=54.211.155.161&fvip=4&ms=au%2Conr&mv=m&mt=1532586280&ratebypass=yes&requiressl=yes&id=o-ABYSr4wsndRDqOWxoUbjYeUBpevkGnHo0o9RvVzVyRxH&mn=sn-p5qlsnsr%2Csn-vgqsener&mm=31%2C26&c=WEB&key=yt6&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&initcwndbps=4820000&source=youtube&mime=video%2Fmp4&expire=1532607919&ipbits=0&dur=85.077&pl=16&lmt=1507169390801963&ei=T2lZW__lJsSMhwasjbfICA&signature=7BEAEDBE322433811B0A7DC06C3A112D74BF0945.7E81C17DCB4B327212EC388C5AB09619FEDE059B'}}
+        source={{uri: 'https://r5---sn-p5qs7ned.googlevideo.com/videoplayback?mime=video%2Fmp4&mn=sn-p5qs7ned%2Csn-vgqsknek&mm=31%2C26&ms=au%2Conr&ipbits=0&ratebypass=yes&key=yt6&pl=16&mt=1532599311&expire=1532620998&c=WEB&ip=54.87.47.43&requiressl=yes&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&itag=22&lmt=1507179028731560&fvip=5&id=o-AO9CDlPcRKD8GC75H85RJ5Gi1VPQ3LtjBxtkr6cSE1He&ei=ZpxZW-T1HtKt8wS5mqugCA&mv=m&dur=260.226&source=youtube&initcwndbps=6032500&signature=08D306A8D725C9EC0D81DB4EFBF2999C1D930784.460EF02FE340B882C35F38D4038D1824D976A74F'}}
         ref={(ref) => {this.player = ref}}
         rate={this.props.rate}
         volume={1}
