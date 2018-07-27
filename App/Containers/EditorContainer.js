@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Slider } from 'react-native'
 import { connect } from 'react-redux'
+import { 
+  View, 
+  Text, 
+  TouchableOpacity, 
+  Slider, 
+  PermissionsAndroid 
+} from 'react-native'
+
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import VideosActions from '../Redux/VideosRedux'
+import DownloaderActions from '../Redux/DownloaderRedux'
 
 // Styles
 import styles from './Styles/EditorContainerStyle'
-
 
 // Component
 import GridView from 'react-native-super-grid'
@@ -17,9 +24,52 @@ import VideoPlayer from '../Components/VideoPlayer'
 
 const RATES = [1, 0.75, 0.25]
 
+async function requestReadExternalStoragePermission() {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+      {
+        'title': 'DanceTube Read External storage Permission',
+        'message': 'DanceTube needs access to your external storage ' +
+          'so you can read local file of video.'
+      }
+    )
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log("You can use the external storage")
+    } else {
+      console.log("Read external storage permission denied")
+    }
+  } catch (err) {
+    console.warn(err)
+  }
+}
+
+async function requestWriteExternalStoragePermission() {
+  try {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      {
+        'title': 'DanceTube Write External Storage Permission',
+        'message': 'DanceTube needs access to your external storage ' +
+          'so you can save video.'
+      }
+    )
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      console.log("You can use the write external storage")
+    } else {
+      console.log("Write external stoage permission denied")
+    }
+  } catch (err) {
+    console.warn(err)
+  }
+}
+
 class EditorContainer extends Component {
   constructor(props) {
     super(props)
+
+    // requestReadExternalStoragePermission()
+    // requestWriteExternalStoragePermission()
 
     this._onRecord = this.onRecord.bind(this)
     this._onProgress = this.onProgress.bind(this)
@@ -27,6 +77,7 @@ class EditorContainer extends Component {
     this._onPlay = this.onPlay.bind(this)
     this._onValueChange = this.onValueChange.bind(this)
     this._onChangePlayRate = this.onChangePlayRate.bind(this)
+    this._onDownload = this.onDownload.bind(this)
 
     this.state = {
       paused: true,
@@ -116,6 +167,10 @@ class EditorContainer extends Component {
     this.setState({rateIndex: ++this.rateIndex})
   }
 
+  onDownload(){
+    console.log('onDownlaod')
+    this.props.downloadVideo({vid: 'vid', url: 'https://r6---sn-p5qlsnsd.googlevideo.com/videoplayback?itag=22&ip=54.87.32.48&c=WEB&ratebypass=yes&mt=1532686609&mn=sn-p5qlsnsd%2Csn-p5qs7ned&fvip=5&lmt=1507179028731560&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mm=31%2C29&pl=16&mv=m&initcwndbps=3415000&ipbits=0&ms=au%2Crdu&requiressl=yes&ei=gfFaW_TEF4fMhgbEtIOQCg&dur=260.226&source=youtube&key=yt6&expire=1532708321&mime=video%2Fmp4&id=o-AITcexoIycKJMl9jighf1fMiEG6F8kqdBI3mt2up5dL_&signature=B6862D4953DA7DE45FCD348294556848639AC2D7.6B206C17C0BC3969E0566D698F76F2E36B8B50C8' })
+  }
 
   onProgress(currentTime) {
     if (this.state.paused) return
@@ -231,6 +286,7 @@ class EditorContainer extends Component {
             isRecording={this.state.isRecording}
             onPlay={this._onPlay}
             onRecord={this._onRecord}
+            onDownload={this._onDownload}
             onBreak={() => this.onBreak(this.player.currentTime)} /> :
           <PlayController
             paused={this.state.paused}
@@ -259,13 +315,15 @@ class EditorContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    videos: state.videos
+    videos: state.videos,
+    videoPath: state.downloader.payload.path
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveVideo: video => dispatch(VideosActions.youtubeVideoSave(video))
+    saveVideo: video => dispatch(VideosActions.youtubeVideoSave(video)),
+    downloadVideo: (data) => dispatch(DownloaderActions.downloaderRequest(data))
   }
 }
 

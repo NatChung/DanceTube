@@ -34,6 +34,16 @@ export default StyleSheet.create({
     marginLeft: 5,
     marginRight: 10,
   },
+  downloadButton: {
+    flex: 1,
+    backgroundColor: 'orange',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 5,
+    marginBottom: 10,
+    marginLeft: 5,
+    marginRight: 10,
+  },
   disabledButton:{
     flex: 1,
     backgroundColor: 'gray',

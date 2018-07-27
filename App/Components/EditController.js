@@ -11,7 +11,8 @@ export default class EditController extends Component {
     paused: PropTypes.bool.isRequired,
     onPlay: PropTypes.func,
     onRecord: PropTypes.func,
-    onBreak: PropTypes.func
+    onBreak: PropTypes.func,
+    onDownload: PropTypes.func
   }
   //
   // // Defaults for props
@@ -37,6 +38,12 @@ export default class EditController extends Component {
             onPress={this.props.onBreak}
             style={(!this.props.isRecording) ? styles.disabledButton : styles.breakButton } >
             <Icon name="cut" size={50} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={this.props.onDownload}
+            style={styles.downloadButton } >
+            <Icon name="download" size={50} />
           </TouchableOpacity>
           
         </View>
