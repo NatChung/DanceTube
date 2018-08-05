@@ -11,6 +11,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.alinz.parkerdan.shareextension.SharePackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFetchBlobPackage(),
             new ReactNativeConfigPackage(),
             new ReactVideoPackage(),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
+            new SharePackage()
       );
     }
 
