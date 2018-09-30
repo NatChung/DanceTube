@@ -44,7 +44,7 @@ class VideoPlayer extends React.Component {
     return (
       
       <Video
-        source={{uri: '/data/user/0/com.dancetube/files/RNFetchBlobTmp_kswav878b2cxwycksogeub'}}
+        source={{uri: '/data/user/0/com.dancetube/files/RNFetchBlobTmp_f31254jpnpcyd8bo8off3'}}
         ref={(ref) => {this.player = ref}}
         rate={this.props.rate}
         volume={1}

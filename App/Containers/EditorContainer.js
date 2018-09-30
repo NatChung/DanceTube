@@ -68,8 +68,8 @@ class EditorContainer extends Component {
   constructor(props) {
     super(props)
 
-    // requestReadExternalStoragePermission()
-    // requestWriteExternalStoragePermission()
+    requestReadExternalStoragePermission()
+    requestWriteExternalStoragePermission()
 
     this._onRecord = this.onRecord.bind(this)
     this._onProgress = this.onProgress.bind(this)
@@ -169,7 +169,7 @@ class EditorContainer extends Component {
 
   onDownload(){
     console.log('onDownlaod')
-    this.props.downloadVideo({vid: 'vid', url: 'https://r6---sn-p5qlsnsd.googlevideo.com/videoplayback?itag=22&ip=54.87.32.48&c=WEB&ratebypass=yes&mt=1532686609&mn=sn-p5qlsnsd%2Csn-p5qs7ned&fvip=5&lmt=1507179028731560&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&mm=31%2C29&pl=16&mv=m&initcwndbps=3415000&ipbits=0&ms=au%2Crdu&requiressl=yes&ei=gfFaW_TEF4fMhgbEtIOQCg&dur=260.226&source=youtube&key=yt6&expire=1532708321&mime=video%2Fmp4&id=o-AITcexoIycKJMl9jighf1fMiEG6F8kqdBI3mt2up5dL_&signature=B6862D4953DA7DE45FCD348294556848639AC2D7.6B206C17C0BC3969E0566D698F76F2E36B8B50C8' })
+    this.props.downloadVideo({vid: 'vid', url: 'https://r3---sn-ufohvc-u2xe.googlevideo.com/videoplayback?itag=18&id=o-AOo065BtDEesEfNbKPPZkkjouIFoIa5qJq_UHTmoZHq4&ip=101.8.200.237&key=yt6&lmt=1465344984226387&dur=85.101&pcm2cms=yes&mime=video%2Fmp4&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpcm2cms%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&fvip=2&c=WEB&gir=yes&initcwndbps=875000&pl=21&source=youtube&ratebypass=yes&mv=m&mt=1538291110&ms=au%2Crdu&clen=7851848&ei=DXawW8HNJJfMgAORtqL4Aw&expire=1538312813&requiressl=yes&mn=sn-ufohvc-u2xe%2Csn-u4o-u2xk&mm=31%2C29&ipbits=0&signature=26A692C29D557361EABCFCB7A10B9F009D07DB27.78A9E8DCCA695CAF7DE0188656C5DC5934EC4DE2' })
   }
 
   onProgress(currentTime) {

@@ -23,14 +23,15 @@ const downloaderSagaHelper = (vid, url) => eventChannel(emitter => {
     .fetch('GET', url)
     .progress({ interval: 200 }, (received, total) => {
       const progress = received / total * 100   
-      console.log('Should send emitter')
+      console.tron.log('Should send emitter')
       emitter({
         type: 'progress',
         payload: progress,
       })
     })
     .then(res => {
-      console.log('Should send Success, ', res.path())
+
+      console.tron.log('Should send Success, ', res.path())
 
       emitter({
         type: 'success',
